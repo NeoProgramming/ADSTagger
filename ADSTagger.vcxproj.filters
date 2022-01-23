@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{d7318270-07e9-4cba-ad84-dfd6586eed9d}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{2f641c49-250b-48f0-b747-53fbca482e66}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{bfab06fd-af08-4fe9-930b-81fe5933021a}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;jpg;jpeg;jpe;manifest</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{1b171e9a-4116-4797-9ff5-d703142503c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\listctrl">
+      <UniqueIdentifier>{1b5ef3ec-20de-4cbd-96b2-c19eb37d6ce0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\ADSTagger.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stdafx.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MainDlg.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TaggerCore.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\ADSTagger.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MainDlg.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stdafx.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\listctrl\DragDrop.h">
+      <Filter>src\listctrl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\listctrl\DropArrows.h">
+      <Filter>src\listctrl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\listctrl\ListCombo.h">
+      <Filter>src\listctrl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\listctrl\ListCtrl.h">
+      <Filter>src\listctrl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\listctrl\ListDate.h">
+      <Filter>src\listctrl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\listctrl\ListEdit.h">
+      <Filter>src\listctrl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\listctrl\ListTypes.h">
+      <Filter>src\listctrl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\listctrl\TitleTip.h">
+      <Filter>src\listctrl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TaggerCore.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\res\divider.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="src\res\ExampleItems.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="src\res\hand.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="src\res\ADSTagger.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="src\res\ListItems.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="recent_tags.ini" />
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="src\res\ADSTagger.exe.manifest">
+      <Filter>Resource Files</Filter>
+    </Manifest>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="src\ADSTagger.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
