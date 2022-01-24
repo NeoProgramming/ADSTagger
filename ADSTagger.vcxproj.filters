@@ -92,6 +92,7 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="recent_tags.ini" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Manifest Include="src\res\ADSTagger.exe.manifest">
