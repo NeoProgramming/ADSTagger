@@ -41,3 +41,9 @@
 *.res
 *.lastbuildstate
 *.tlog
+*.idb
+*.opendb
+*.rc
+*.ilk
+Debug
+*.zip

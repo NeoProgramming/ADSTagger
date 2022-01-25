@@ -23,7 +23,7 @@ bool isDef(char c)
 	return c == '=' || c == ':';
 }
 
-std::wstring GetTagsPath(LPCTSTR fpath)
+std::wstring GetTagsPath(LPCWSTR fpath)
 {
 	std::wstring adspath;
 	if (_tcsstr(fpath, _T("\\\\?\\")))
@@ -38,6 +38,28 @@ std::wstring GetTagsPath(LPCTSTR fpath)
 	}
 	adspath += _T(":Tags");
 	return adspath;
+}
+
+bool GetFTime(LPCWSTR fpath, FILETIME &ftc, FILETIME &tfa, FILETIME &tfw)
+{
+	HANDLE h = CreateFileW(fpath, GENERIC_READ, FILE_SHARE_READ,
+		NULL, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, NULL );
+	if (h == INVALID_HANDLE_VALUE)
+		return false;
+	bool r = GetFileTime(h, &ftc, &tfa, &tfw);
+	CloseHandle(h);
+	return r;
+}
+
+bool SetFTime(LPCWSTR fpath, FILETIME &ftc, FILETIME &tfa, FILETIME &tfw)
+{
+	HANDLE h = CreateFileW(fpath, GENERIC_WRITE, FILE_SHARE_READ,
+		NULL, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, NULL);
+	if (h == INVALID_HANDLE_VALUE)
+		return false;
+	bool r = SetFileTime(h, &ftc, &tfa, &tfw);
+	CloseHandle(h);
+	return r;
 }
 
 TaggerCore Core;
@@ -134,7 +156,7 @@ void TaggerCore::saveFileTags(FileTags &f)
 		t << line;
 	}
 	t.close();
-	std::filesystem::last_write_time(f.m_fpath, f.m_wtime);
+	SetFTime(f.m_fpath.c_str(), f.ftc, f.tfa, f.tfw);
 }
 
 void TaggerCore::makeTags(std::list<Tag*> &fileTags, std::string &tags)
@@ -177,7 +199,7 @@ void TaggerCore::parseCommandLine()
 		if (std::filesystem::exists(pArgv[i])) {
 			FileTags f;
 			f.m_fpath = pArgv[i];
-			f.m_wtime = std::filesystem::last_write_time(pArgv[i]);
+			GetFTime(pArgv[i], f.ftc, f.tfa, f.tfw);
 			loadFileTags(f);
 			m_Files.push_back(f);
 		}

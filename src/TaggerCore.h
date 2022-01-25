@@ -21,7 +21,7 @@ typedef std::list<Tag>::iterator TagIter;
 
 struct FileTags {
 	std::wstring m_fpath;
-	std::filesystem::file_time_type m_wtime;
+	FILETIME ftc, tfa, tfw;
 	std::list<Tag*> m_tags;	
 };
 
