@@ -45,6 +45,9 @@ public:
 	std::list<FileTags> m_Files;
 	std::list<Tag> m_Tags;
 	std::wstring_convert<std::codecvt_utf8_utf16<wchar_t> > m_converter;
+	struct {
+		int x, y, w, h;
+	} Cfg;
 };
 
 extern TaggerCore Core;

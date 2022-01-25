@@ -3,6 +3,7 @@
 #include <string.h>
 #include <fstream>
 #include <algorithm>
+#include "nlohmann/json.hpp"
 
 const wchar_t AdsTagger[] = _T("\\adstagger.ini");
 const wchar_t RecentTags[] = _T("\\recent_tags.ini");
