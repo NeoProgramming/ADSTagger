@@ -5,7 +5,7 @@
 #include <algorithm>
 #include "nlohmann/json.hpp"
 
-const wchar_t AdsTagger[] = _T("\\adstagger.ini");
+const wchar_t AdsTaggerIni[] = _T("\\adstagger.ini");
 const wchar_t RecentTags[] = _T("\\recent_tags.ini");
 
 bool isTag(char c)
@@ -225,15 +225,43 @@ void TaggerCore::init()
 	if (ls)
 		*ls = 0;
 	m_AppPath = path;
-	loadIni();
+
 	parseCommandLine();
 	buildUsedTags();
 	loadRecentTags();
 }
 
-void TaggerCore::loadIni()
+bool TaggerCore::loadIni()
 {
+	std::ifstream file(m_AppPath + AdsTaggerIni);
+	nlohmann::json j;
+	try {
+		j = nlohmann::json::parse(file);
+	}
+	catch (...) {
+		Cfg.x1 = 100;
+		Cfg.y2 = 100;
+		Cfg.x2 = 300;
+		Cfg.y2 = 300;
+		return false;
+	}
+	Cfg.x1 = j["x1"];
+	Cfg.y1 = j["y1"];
+	Cfg.x2 = j["x2"];
+	Cfg.y2 = j["y2"];
+	return true;
+}
 
+void TaggerCore::saveIni()
+{
+	nlohmann::json j;
+	j["x1"] = Cfg.x1;
+	j["y1"] = Cfg.y1;
+	j["x2"] = Cfg.x2;
+	j["y2"] = Cfg.y2;
+
+	std::ofstream file(m_AppPath + AdsTaggerIni);
+	file << j.dump(2);
 }
 
 void TaggerCore::apply()

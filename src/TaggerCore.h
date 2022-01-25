@@ -39,14 +39,15 @@ public:
 	void buildUsedTags();
 	void loadFileTags(FileTags &f);
 	void saveFileTags(FileTags &f);
-	void loadIni();
+	bool loadIni();
+	void saveIni();
 public:
 	std::wstring m_AppPath;
 	std::list<FileTags> m_Files;
 	std::list<Tag> m_Tags;
 	std::wstring_convert<std::codecvt_utf8_utf16<wchar_t> > m_converter;
 	struct {
-		int x, y, w, h;
+		int x1, y1, x2, y2;
 	} Cfg;
 };
 

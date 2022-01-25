@@ -61,6 +61,8 @@ protected:
 	
 	void AddTags();
 	void AppAbout();
+	void LoadIni();
+	void SaveIni();
 
 	LRESULT OnOK(WORD /*wNotifyCode*/, WORD wID, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
 	LRESULT OnCancel(WORD /*wNotifyCode*/, WORD wID, HWND /*hWndCtl*/, BOOL& /*bHandled*/);

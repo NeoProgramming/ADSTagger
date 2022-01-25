@@ -41,6 +41,7 @@ LRESULT CMainDlg::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam
 	DlgResize_Init();
 
 	Core.init();
+	LoadIni();
 	LoadLists();
 		
 	return TRUE;
@@ -145,11 +146,34 @@ void CMainDlg::AppAbout()
 	dlg.DoModal();
 }
 
+void CMainDlg::LoadIni()
+{
+	Core.loadIni();
+	RECT rect;
+	rect.left = Core.Cfg.x1;
+	rect.top = Core.Cfg.y1;
+	rect.right = Core.Cfg.x2;
+	rect.bottom = Core.Cfg.y2;
+	SetWindowPos(0, &rect, SWP_NOZORDER);
+}
+
+void CMainDlg::SaveIni()
+{
+	RECT rect;
+	BOOL r = GetWindowRect(&rect);
+	Core.Cfg.x1 = rect.left;
+	Core.Cfg.y1 = rect.top;
+	Core.Cfg.x2 = rect.right;
+	Core.Cfg.y2 = rect.bottom;
+	Core.saveIni();
+}
+
 LRESULT CMainDlg::OnOK(WORD /*wNotifyCode*/, WORD wID, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
 {
 	AddTags();
 	SaveLists();
 	Core.apply();
+	SaveIni();
 	EndDialog(wID);
 
 	// cm_RereadSource
@@ -162,6 +186,7 @@ LRESULT CMainDlg::OnOK(WORD /*wNotifyCode*/, WORD wID, HWND /*hWndCtl*/, BOOL& /
 
 LRESULT CMainDlg::OnCancel(WORD /*wNotifyCode*/, WORD wID, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
 {
+	SaveIni();
 	EndDialog(wID);
 	return 0;
 }
