@@ -207,3 +207,26 @@ LRESULT CMainDlg::OnAddTags(WORD /*wNotifyCode*/, WORD wID, HWND /*hWndCtl*/, BO
 
 	return 0;
 }
+
+LRESULT CMainDlg::OnCopyPath(WORD /*wNotifyCode*/, WORD wID, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
+{
+	std::wstring paths;
+	for (auto &f : Core.m_Files) {
+		if (!paths.empty())
+			paths += L" ";
+		paths += f.m_fpath;
+	}
+
+	const wchar_t* output = paths.c_str();
+	const size_t size = paths.length()*2 + 2;
+
+	HGLOBAL hMem = GlobalAlloc(GMEM_MOVEABLE, size);
+	memcpy(GlobalLock(hMem), output, size);
+	GlobalUnlock(hMem);
+	OpenClipboard();
+	EmptyClipboard();
+	SetClipboardData(CF_UNICODETEXT, hMem);
+	CloseClipboard();
+
+	return 0;
+}

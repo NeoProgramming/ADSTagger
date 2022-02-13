@@ -14,6 +14,8 @@
 #define IDC_ADDTAGS                     1003
 #define IDC_NEWTAGS                     1004
 #define IDC_SYSLINK1                    1005
+#define IDC_ADDTAGS2                    1005
+#define IDC_COPYPATH                    1005
 
 // Next default values for new objects
 // 
